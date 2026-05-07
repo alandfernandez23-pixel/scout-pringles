@@ -32,9 +32,6 @@
     background: var(--fondo);
     color: var(--text);
     min-height: 100vh;
-    background-image:
-      radial-gradient(circle at 10% 20%, rgba(42,82,152,0.07) 0%, transparent 50%),
-      radial-gradient(circle at 90% 80%, rgba(176,26,26,0.05) 0%, transparent 50%);
   }
 
   /* ---- HEADER ---- */
@@ -46,94 +43,85 @@
   }
   header::before {
     content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      45deg, transparent, transparent 20px,
-      rgba(255,255,255,0.025) 20px, rgba(255,255,255,0.025) 40px
-    );
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.025) 20px, rgba(255,255,255,0.025) 40px);
     pointer-events: none;
   }
   header::after {
     content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 4px;
+    position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
     background: linear-gradient(90deg, var(--rojo) 0%, var(--amarillo) 40%, var(--rojo) 100%);
   }
-
   .header-inner {
-    max-width: 920px;
-    margin: 0 auto;
+    max-width: 980px; margin: 0 auto;
     padding: 20px 24px 24px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    position: relative;
+    display: flex; align-items: center; gap: 18px; position: relative;
   }
-
   .logo-wrap {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
+    width: 72px; height: 72px; border-radius: 50%;
     background: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: 3px solid var(--amarillo);
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; border: 3px solid var(--amarillo); flex-shrink: 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   }
-  .logo-wrap img {
-    width: 88%;
-    height: 88%;
-    object-fit: contain;
-  }
-
+  .logo-wrap img { width: 88%; height: 88%; object-fit: contain; }
   .header-text h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 21px; font-weight: 700; line-height: 1.2;
   }
   .header-text .subtitle {
-    font-size: 12px;
-    opacity: 0.70;
-    margin-top: 5px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 12px; opacity: 0.70; margin-top: 5px;
+    font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
   }
   .header-badge {
-    margin-left: auto;
-    background: var(--rojo);
-    border-radius: 20px;
-    padding: 6px 16px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    white-space: nowrap;
+    margin-left: auto; background: var(--rojo);
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; white-space: nowrap;
   }
 
   /* ---- BIENVENIDA ---- */
   .welcome-bar {
-    background: var(--amarillo);
-    color: var(--azul);
-    text-align: center;
-    padding: 9px 24px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    background: var(--amarillo); color: var(--azul);
+    text-align: center; padding: 9px 24px;
+    font-size: 13px; font-weight: 700; letter-spacing: 0.02em;
   }
   .welcome-bar span { font-weight: 500; }
 
+  /* ---- NAV TABS ---- */
+  .nav-tabs {
+    background: var(--white);
+    border-bottom: 2px solid var(--crema);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 8px rgba(14,26,44,0.07);
+  }
+  .nav-tabs-inner {
+    max-width: 980px; margin: 0 auto;
+    display: flex; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav-tabs-inner::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 14px 22px;
+    font-size: 13px; font-weight: 600;
+    color: var(--text-sec);
+    border: none; background: none;
+    cursor: pointer; white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.15s, border-color 0.15s;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .tab-btn:hover { color: var(--azul-med); }
+  .tab-btn.active { color: var(--azul); border-bottom-color: var(--azul); }
+
   /* ---- MAIN ---- */
-  main { max-width: 920px; margin: 0 auto; padding: 28px 20px 48px; }
+  main { max-width: 980px; margin: 0 auto; padding: 28px 20px 48px; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
 
   /* ---- CARD GENÉRICA ---- */
-  .card-section {
+  .card {
     background: var(--white);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -141,68 +129,43 @@
     overflow: hidden;
     border: 1px solid var(--crema);
   }
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .card-header {
+    display: flex; align-items: center; gap: 10px;
     padding: 15px 20px;
     border-bottom: 1px solid var(--crema);
   }
-  .section-header .icon {
-    width: 32px; height: 32px;
-    border-radius: 8px;
+  .card-header .icon {
+    width: 32px; height: 32px; border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
     font-size: 16px; flex-shrink: 0;
   }
   .icon-azul  { background: var(--azul-cl); }
   .icon-rojo  { background: var(--rojo-cl); }
   .icon-amari { background: var(--amarillo-cl); }
+  .icon-verde { background: #d4f0d4; }
 
-  .section-header h2 {
+  .card-header h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 16px; font-weight: 600; color: var(--text);
+    font-size: 16px; font-weight: 600; color: var(--text); flex: 1;
   }
-  .section-header .ver-mas {
-    margin-left: auto;
+  .card-header .card-link {
     font-size: 12px; color: var(--azul-med);
     font-weight: 700; text-decoration: none; letter-spacing: 0.03em;
+    padding: 6px 14px; border: 1px solid var(--azul-cl);
+    border-radius: 20px; transition: background 0.15s;
   }
-  .section-header .ver-mas:hover { text-decoration: underline; }
+  .card-header .card-link:hover { background: var(--azul-cl); }
 
-  /* ---- NOVEDADES ---- */
-  .novedad-item {
-    display: flex; align-items: flex-start; gap: 14px;
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--fondo);
-    transition: background 0.15s;
-    text-decoration: none; color: inherit;
-  }
-  .novedad-item:last-child { border-bottom: none; }
-  .novedad-item:hover { background: var(--fondo-cl); }
-
-  .novedad-fecha {
-    min-width: 44px; text-align: center;
-    background: var(--azul); color: var(--white);
-    border-radius: 8px; padding: 5px 7px 4px; flex-shrink: 0;
-  }
-  .novedad-fecha .dia { font-size: 20px; font-weight: 700; display: block; line-height: 1; }
-  .novedad-fecha .mes { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8; }
-  .novedad-texto strong { font-size: 14px; font-weight: 600; display: block; margin-bottom: 3px; }
-  .novedad-texto p { font-size: 13px; color: var(--text-sec); line-height: 1.45; }
-
-  /* ---- TOOLS ---- */
+  /* ---- INICIO: ACCESOS RÁPIDOS ---- */
   .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 16px; margin-bottom: 20px;
   }
   .tool-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid var(--crema);
-    padding: 20px;
-    text-decoration: none; color: var(--text);
+    background: var(--white); border-radius: var(--radius);
+    box-shadow: var(--shadow); border: 1px solid var(--crema);
+    padding: 20px; text-decoration: none; color: var(--text);
     display: flex; flex-direction: column; gap: 10px;
     transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
   }
@@ -219,21 +182,13 @@
   .bg-rojo   { background: var(--rojo-cl); }
   .bg-amari  { background: var(--amarillo-cl); }
   .bg-dorado { background: #f5ead0; }
+  .bg-verde  { background: #d4f0d4; }
 
   .tool-card h3 { font-size: 14px; font-weight: 600; }
   .tool-card p  { font-size: 12px; color: var(--text-sec); line-height: 1.45; flex: 1; }
   .tool-link    { font-size: 12px; font-weight: 700; color: var(--azul-med); }
 
-  /* ---- DOS COLUMNAS ---- */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
-  @media (max-width: 600px) {
-    .two-col { grid-template-columns: 1fr; }
-    .header-badge { display: none; }
-    .header-text h1 { font-size: 17px; }
-    .logo-wrap { width: 56px; height: 56px; }
-  }
-
-  /* ---- EVENTOS ---- */
+  /* ---- INICIO: PRÓXIMOS EVENTOS (mini) ---- */
   .evento-item {
     display: flex; align-items: center; gap: 12px;
     padding: 12px 20px; border-bottom: 1px solid var(--fondo);
@@ -249,48 +204,61 @@
   .evento-info strong { display: block; font-weight: 600; margin-bottom: 1px; }
   .evento-info span   { font-size: 11px; color: var(--text-sec); }
 
-  /* ---- TAREAS ---- */
-  .tarea-item {
-    display: flex; align-items: center; gap: 12px;
-    padding: 12px 20px; border-bottom: 1px solid var(--fondo); font-size: 13px;
+  /* ---- CALENDARIO EMBEBIDO ---- */
+  .calendar-wrap {
+    padding: 20px;
   }
-  .tarea-item:last-child { border-bottom: none; }
-  .tarea-check {
-    width: 20px; height: 20px; border-radius: 50%;
-    border: 2px solid var(--crema); flex-shrink: 0;
-    cursor: pointer; transition: all 0.15s; position: relative;
+  .calendar-wrap iframe {
+    width: 100%; border-radius: 8px;
+    border: 1px solid var(--crema) !important;
+    display: block;
   }
-  .tarea-check:hover { border-color: var(--azul-med); }
-  .tarea-check.done  { background: var(--azul-med); border-color: var(--azul-med); }
-  .tarea-check.done::after {
-    content: '✓'; position: absolute;
-    top: 50%; left: 50%; transform: translate(-50%, -50%);
-    color: white; font-size: 11px; font-weight: 700;
+  .calendar-note {
+    margin-top: 12px; padding: 12px 16px;
+    background: var(--amarillo-cl); border-radius: 8px;
+    border-left: 3px solid var(--amarillo);
+    font-size: 13px; color: var(--text-sec); line-height: 1.5;
   }
-  .tarea-texto { flex: 1; }
-  .tarea-texto strong { display: block; font-weight: 600; margin-bottom: 1px; }
-  .tarea-texto span   { font-size: 11px; color: var(--text-sec); }
-  .tarea-badge {
-    font-size: 10px; font-weight: 700;
-    padding: 2px 9px; border-radius: 10px;
-    text-transform: uppercase; letter-spacing: 0.05em;
-  }
-  .badge-urgente { background: var(--rojo-cl); color: var(--rojo); }
-  .badge-normal  { background: var(--azul-cl); color: var(--azul); }
+  .calendar-note strong { color: var(--text); }
 
-  /* ---- CHAT ---- */
-  .chat-banner {
-    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-med) 100%);
-    color: var(--white); border-radius: var(--radius);
-    padding: 20px 24px; display: flex; align-items: center; gap: 16px;
-    text-decoration: none; transition: opacity 0.15s;
-    box-shadow: var(--shadow); border-left: 5px solid var(--amarillo);
+  /* ---- TAREAS ---- */
+  .tareas-wrap { padding: 20px; }
+  .keep-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #fbbc04; color: #1a1a1a;
+    padding: 14px 28px; border-radius: 8px;
+    text-decoration: none; font-weight: 700; font-size: 15px;
+    border: 2px solid #e0a800;
+    transition: background 0.15s, transform 0.1s;
+    margin-bottom: 20px;
   }
-  .chat-banner:hover { opacity: 0.92; }
-  .chat-banner-icon { font-size: 30px; }
-  .chat-banner-text h3 { font-size: 16px; font-weight: 700; font-family: 'Playfair Display', serif; }
-  .chat-banner-text p  { font-size: 13px; opacity: 0.78; margin-top: 2px; }
-  .chat-banner-arrow   { margin-left: auto; font-size: 22px; opacity: 0.6; }
+  .keep-btn:hover { background: #e0a800; transform: translateY(-1px); }
+  .keep-info {
+    background: var(--azul-cl); border-radius: 8px;
+    padding: 16px 20px; font-size: 13px;
+    color: var(--text-sec); line-height: 1.6;
+    border-left: 3px solid var(--azul-med);
+  }
+  .keep-info strong { color: var(--text); display: block; margin-bottom: 6px; font-size: 14px; }
+  .keep-info ol { padding-left: 18px; margin-top: 6px; }
+  .keep-info li { margin-bottom: 4px; }
+
+  /* ---- DOCUMENTOS ---- */
+  .drive-wrap { padding: 20px; }
+  .drive-embed {
+    width: 100%; height: 500px;
+    border: 1px solid var(--crema);
+    border-radius: 8px; display: block;
+  }
+  .drive-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 14px;
+    background: var(--azul); color: var(--white);
+    padding: 11px 22px; border-radius: 8px;
+    text-decoration: none; font-weight: 700; font-size: 14px;
+    transition: background 0.15s;
+  }
+  .drive-btn:hover { background: var(--azul-med); }
 
   /* ---- FOOTER ---- */
   footer {
@@ -298,10 +266,18 @@
     color: var(--text-sec); opacity: 0.65;
     border-top: 1px solid var(--crema); margin-top: 8px;
   }
+
+  @media (max-width: 600px) {
+    .header-badge { display: none; }
+    .header-text h1 { font-size: 17px; }
+    .logo-wrap { width: 56px; height: 56px; }
+    .tab-btn { padding: 12px 14px; font-size: 12px; }
+  }
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="header-inner">
     <div class="logo-wrap">
@@ -319,129 +295,164 @@
   Bienvenido/a, Dirigente &nbsp;·&nbsp; <span>Lo que acá se comparte es confidencial del grupo.</span>
 </div>
 
+<!-- TABS DE NAVEGACIÓN -->
+<nav class="nav-tabs">
+  <div class="nav-tabs-inner">
+    <button class="tab-btn active" onclick="showTab('inicio')">🏠 Inicio</button>
+    <button class="tab-btn" onclick="showTab('calendario')">📅 Calendario</button>
+    <button class="tab-btn" onclick="showTab('tareas')">✅ Tareas</button>
+    <button class="tab-btn" onclick="showTab('documentos')">📁 Documentos</button>
+  </div>
+</nav>
+
 <main>
 
-  <!-- NOVEDADES -->
-  <div class="card-section">
-    <div class="section-header">
-      <div class="icon icon-rojo">📢</div>
-      <h2>Novedades del Grupo</h2>
-      <a href="https://docs.google.com/document/d/REEMPLAZA_CON_TU_LINK" target="_blank" class="ver-mas">Ver todas →</a>
+  <!-- =================== INICIO =================== -->
+  <div class="tab-panel active" id="tab-inicio">
+
+    <div class="tools-grid">
+      <a class="tool-card" href="https://drive.google.com/drive/folders/10gAupj885xJgPfSgXiWDBIQhj31q_b2v?usp=sharing" target="_blank">
+        <div class="tool-icon-wrap bg-amari">📁</div>
+        <h3>Documentos y Archivos</h3>
+        <p>Planillas, formularios, manuales y recursos del grupo en Google Drive.</p>
+        <span class="tool-link">Abrir Drive →</span>
+      </a>
+      <a class="tool-card" onclick="showTab('calendario')" href="#" onclick="return false;">
+        <div class="tool-icon-wrap bg-azul">📅</div>
+        <h3>Calendario del Grupo</h3>
+        <p>Actividades, reuniones y eventos. Todos los dirigentes pueden agregar eventos.</p>
+        <span class="tool-link">Ver calendario →</span>
+      </a>
+      <a class="tool-card" onclick="showTab('tareas')" href="#" onclick="return false;">
+        <div class="tool-icon-wrap bg-amari">✅</div>
+        <h3>Tareas Pendientes</h3>
+        <p>Lista colaborativa en tiempo real. Editá desde cualquier dispositivo.</p>
+        <span class="tool-link">Ver tareas →</span>
+      </a>
+      <a class="tool-card" href="https://chat.google.com/" target="_blank">
+        <div class="tool-icon-wrap bg-verde">💬</div>
+        <h3>Chat de Dirigentes</h3>
+        <p>Coordinación rápida del grupo por Google Chat.</p>
+        <span class="tool-link">Abrir Chat →</span>
+      </a>
     </div>
-    <a class="novedad-item" href="https://docs.google.com/document/d/REEMPLAZA" target="_blank">
-      <div class="novedad-fecha"><span class="dia">10</span><span class="mes">May</span></div>
-      <div class="novedad-texto">
-        <strong>Reunión de dirigentes — Sábado 17hs</strong>
-        <p>Se tratará la planificación del campamento de invierno. Confirmar asistencia.</p>
-      </div>
-    </a>
-    <a class="novedad-item" href="https://docs.google.com/document/d/REEMPLAZA" target="_blank">
-      <div class="novedad-fecha"><span class="dia">07</span><span class="mes">May</span></div>
-      <div class="novedad-texto">
-        <strong>Nuevo material de promesa disponible</strong>
-        <p>Se subió a Drive el manual actualizado de la sección lobatos. Revisar antes del próximo sábado.</p>
-      </div>
-    </a>
-    <a class="novedad-item" href="https://docs.google.com/document/d/REEMPLAZA" target="_blank">
-      <div class="novedad-fecha"><span class="dia">03</span><span class="mes">May</span></div>
-      <div class="novedad-texto">
-        <strong>Inscripciones abiertas — Campamento Regional</strong>
-        <p>Plazo hasta el 20 de mayo. Completar la planilla de inscritos en Drive.</p>
-      </div>
-    </a>
-  </div>
 
-  <!-- HERRAMIENTAS -->
-  <div class="tools-grid">
-    <a class="tool-card" href="https://drive.google.com/drive/folders/REEMPLAZA_CON_TU_CARPETA" target="_blank">
-      <div class="tool-icon-wrap bg-amari">📁</div>
-      <h3>Documentos y Archivos</h3>
-      <p>Planillas, formularios, manuales y recursos del grupo en Google Drive.</p>
-      <span class="tool-link">Abrir Drive →</span>
-    </a>
-    <a class="tool-card" href="https://docs.google.com/spreadsheets/d/REEMPLAZA_CON_TU_PLANILLA" target="_blank">
-      <div class="tool-icon-wrap bg-azul">🦅</div>
-      <h3>Registro de Miembros</h3>
-      <p>Scouts activos, datos de contacto, secciones y estado de cuotas.</p>
-      <span class="tool-link">Ver planilla →</span>
-    </a>
-    <a class="tool-card" href="https://calendar.google.com/calendar/r?cid=REEMPLAZA_CON_ID_CALENDARIO" target="_blank">
-      <div class="tool-icon-wrap bg-rojo">📅</div>
-      <h3>Calendario</h3>
-      <p>Actividades, reuniones y eventos del grupo. Compartido con todos los dirigentes.</p>
-      <span class="tool-link">Ver calendario →</span>
-    </a>
-    <a class="tool-card" href="https://mail.google.com/mail/u/0/#search/grupo+scout+pringles" target="_blank">
-      <div class="tool-icon-wrap bg-dorado">✉️</div>
-      <h3>Correo del Grupo</h3>
-      <p>Comunicaciones oficiales y correo compartido de los dirigentes.</p>
-      <span class="tool-link">Abrir Gmail →</span>
-    </a>
-  </div>
-
-  <!-- CALENDARIO + TAREAS -->
-  <div class="two-col">
-    <div class="card-section" style="margin-bottom:0">
-      <div class="section-header">
+    <!-- Próximos eventos en inicio -->
+    <div class="card">
+      <div class="card-header">
         <div class="icon icon-azul">📅</div>
         <h2>Próximos Eventos</h2>
-        <a href="https://calendar.google.com/calendar/r?cid=REEMPLAZA" target="_blank" class="ver-mas">Calendario →</a>
+        <a href="#" onclick="showTab('calendario'); return false;" class="card-link">Ver calendario completo →</a>
       </div>
-      <a class="evento-item" href="https://calendar.google.com" target="_blank">
+      <a class="evento-item" href="#" onclick="showTab('calendario'); return false;">
         <div class="evento-dot dot-azul"></div>
-        <div class="evento-info"><strong>Reunión semanal — Lobatos</strong><span>Sábado 10 May · 10:00hs</span></div>
+        <div class="evento-info">
+          <strong>Reunión semanal — Lobatos</strong>
+          <span>Sábado 10 May · 10:00hs</span>
+        </div>
       </a>
-      <a class="evento-item" href="https://calendar.google.com" target="_blank">
+      <a class="evento-item" href="#" onclick="showTab('calendario'); return false;">
         <div class="evento-dot dot-rojo"></div>
-        <div class="evento-info"><strong>Reunión de dirigentes</strong><span>Sábado 17 May · 17:00hs</span></div>
+        <div class="evento-info">
+          <strong>Reunión de dirigentes</strong>
+          <span>Sábado 17 May · 17:00hs</span>
+        </div>
       </a>
-      <a class="evento-item" href="https://calendar.google.com" target="_blank">
+      <a class="evento-item" href="#" onclick="showTab('calendario'); return false;">
         <div class="evento-dot dot-amari"></div>
-        <div class="evento-info"><strong>Campamento Regional</strong><span>23–25 May</span></div>
+        <div class="evento-info">
+          <strong>Campamento Regional</strong>
+          <span>23–25 May</span>
+        </div>
       </a>
     </div>
 
-    <div class="card-section" style="margin-bottom:0">
-      <div class="section-header">
-        <div class="icon icon-amari">✅</div>
-        <h2>Tareas Pendientes</h2>
-        <a href="https://docs.google.com/spreadsheets/d/REEMPLAZA" target="_blank" class="ver-mas">Ver todas →</a>
+  </div>
+
+  <!-- =================== CALENDARIO =================== -->
+  <div class="tab-panel" id="tab-calendario">
+    <div class="card">
+      <div class="card-header">
+        <div class="icon icon-azul">📅</div>
+        <h2>Calendario del Grupo Scout Pringles</h2>
+        <a href="https://calendar.google.com/calendar/r?cid=fd9cc70586453efac61877175e23b80a276e620999f6bbe172032204721fa6f7%40group.calendar.google.com" target="_blank" class="card-link">Abrir en Google Calendar →</a>
       </div>
-      <div class="tarea-item">
-        <div class="tarea-check" onclick="this.classList.toggle('done')"></div>
-        <div class="tarea-texto"><strong>Confirmación campamento regional</strong><span>Vence: 20 mayo</span></div>
-        <span class="tarea-badge badge-urgente">Urgente</span>
-      </div>
-      <div class="tarea-item">
-        <div class="tarea-check" onclick="this.classList.toggle('done')"></div>
-        <div class="tarea-texto"><strong>Actualizar padrón de scouts</strong><span>Sin vencimiento</span></div>
-        <span class="tarea-badge badge-normal">Normal</span>
-      </div>
-      <div class="tarea-item">
-        <div class="tarea-check" onclick="this.classList.toggle('done')"></div>
-        <div class="tarea-texto"><strong>Revisar manual lobatos nuevo</strong><span>Vence: 10 mayo</span></div>
-        <span class="tarea-badge badge-urgente">Urgente</span>
+      <div class="calendar-wrap">
+        <iframe
+          src="https://calendar.google.com/calendar/embed?src=fd9cc70586453efac61877175e23b80a276e620999f6bbe172032204721fa6f7%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires&hl=es&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0&mode=MONTH"
+          style="border:0" height="620" frameborder="0" scrolling="no">
+        </iframe>
+        <div class="calendar-note">
+          <strong>¿Cómo agregar o editar eventos?</strong>
+          El calendario es compartido. Para agregar eventos, abrilo en Google Calendar con el botón de arriba a la derecha. Cualquier dirigente con acceso puede crear, editar o eliminar eventos directamente desde ahí.
+        </div>
       </div>
     </div>
   </div>
 
-  <div style="height:16px"></div>
-
-  <!-- CHAT -->
-  <a class="chat-banner" href="https://chat.google.com/" target="_blank">
-    <div class="chat-banner-icon">💬</div>
-    <div class="chat-banner-text">
-      <h3>Chat de Dirigentes</h3>
-      <p>Coordinación rápida por Google Chat — Grupo Scout Pringles</p>
+  <!-- =================== TAREAS =================== -->
+  <div class="tab-panel" id="tab-tareas">
+    <div class="card">
+      <div class="card-header">
+        <div class="icon icon-amari">✅</div>
+        <h2>Tareas Pendientes del Grupo</h2>
+      </div>
+      <div class="tareas-wrap">
+        <a href="https://keep.google.com/" target="_blank" class="keep-btn">
+          📝 &nbsp;Abrir lista en Google Keep
+        </a>
+        <div class="keep-info">
+          <strong>¿Cómo funciona la lista colaborativa?</strong>
+          Google Keep permite crear listas de tareas que todos los dirigentes pueden editar en tiempo real desde el celular o la computadora.
+          <ol>
+            <li>Abrí Google Keep con el botón de arriba</li>
+            <li>Buscá la nota llamada <em>"Tareas — Grupo Scout Pringles"</em></li>
+            <li>Si no existe todavía, creá una nota nueva con ese nombre y compartila con los mails de todos los dirigentes (ícono de persona arriba a la derecha)</li>
+            <li>Cada dirigente que entre verá y podrá editar la misma lista</li>
+          </ol>
+        </div>
+      </div>
     </div>
-    <div class="chat-banner-arrow">→</div>
-  </a>
+  </div>
+
+  <!-- =================== DOCUMENTOS =================== -->
+  <div class="tab-panel" id="tab-documentos">
+    <div class="card">
+      <div class="card-header">
+        <div class="icon icon-amari">📁</div>
+        <h2>Documentos y Archivos del Grupo</h2>
+        <a href="https://drive.google.com/drive/folders/10gAupj885xJgPfSgXiWDBIQhj31q_b2v?usp=sharing" target="_blank" class="card-link">Abrir en Drive →</a>
+      </div>
+      <div class="drive-wrap">
+        <iframe
+          class="drive-embed"
+          src="https://drive.google.com/embeddedfolderview?id=10gAupj885xJgPfSgXiWDBIQhj31q_b2v#list"
+          allowfullscreen>
+        </iframe>
+        <a href="https://drive.google.com/drive/folders/10gAupj885xJgPfSgXiWDBIQhj31q_b2v?usp=sharing" target="_blank" class="drive-btn">
+          📁 &nbsp;Abrir carpeta completa en Google Drive
+        </a>
+      </div>
+    </div>
+  </div>
 
 </main>
 
 <footer>
   Grupo Scout Cnel. Juan Pascual Pringles · Barracas, Buenos Aires · Portal de uso interno exclusivo para dirigentes
 </footer>
+
+<script>
+  function showTab(name) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    const btns = document.querySelectorAll('.tab-btn');
+    const map = { inicio: 0, calendario: 1, tareas: 2, documentos: 3 };
+    btns[map[name]].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
 
 </body>
 </html>
